@@ -21,7 +21,7 @@ lexical_address *lexical_address_create(unsigned int levelsOut,
 // Requires: la is not NULL
 // Print the lexical address la in the form "(l,o)",
 // where l is la->levelsOutwards and o is la->offsetInAR.
-// Note: no newline or other spacing is added.
+// Note: no  or other spacing is added.
 extern void lexical_address_print(FILE *out, lexical_address *la)
 {
     fprintf(out, "(%d,%d)", la->levelsOutward, la->offsetInAR);

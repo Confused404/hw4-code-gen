@@ -25,7 +25,6 @@ static BOFHeader gen_code_program_header(code_seq main_cs)
     ret.text_length = code_seq_size(main_cs) * BYTES_PER_WORD;
     int dsa = MAX(ret.text_length, 1024) + BYTES_PER_WORD;
     ret.data_start_address = dsa;
-    ret.text_length = 0; // FLOAT has no int literals
     ret.data_length = literal_table_size() * BYTES_PER_WORD;
     int sba = dsa
 	+ ret.data_start_address
@@ -61,8 +60,9 @@ static void gen_code_output_program(BOFFILE bf, code_seq main_cs)
 // Generate code for prog into bf
 void gen_code_program(BOFFILE bf, block_t prog)
 {
-    code_seq ret = gen_code_block(prog); 
-    ret = code_seq_concat(ret, code_exit());
+    code_seq cs = gen_code_block(prog); 
+    cs = code_seq_concat(cs, code_exit());
+    gen_code_output_program(bf, cs);
 }
 
 // Requires: bf if open for writing in binary

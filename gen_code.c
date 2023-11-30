@@ -19,16 +19,16 @@ static void gen_code_output_seq(BOFFILE bf, code_seq cs)
 static BOFHeader gen_code_program_header(code_seq main_cs)
 {
     BOFHeader ret;
-    strncpy(ret.magic, "FBF", 4);  // for FLOAT SRM
     ret.text_start_address = 0;
     // remember, the unit of length in the BOF format is a byte!
     ret.text_length = code_seq_size(main_cs) * BYTES_PER_WORD;
-    int dsa = MAX(ret.text_length, 1024) + BYTES_PER_WORD;
+    int dsa = ret.text_length + BYTES_PER_WORD;
     ret.data_start_address = dsa;
     ret.data_length = literal_table_size() * BYTES_PER_WORD;
     int sba = dsa
-	+ ret.data_start_address
-	+ ret.text_length + ret.data_length + 4096; // Assuming STACK_SPACE is 4096
+	+ ret.data_start_address // double?
+    + ret.data_length 
+    + 4096;
     ret.stack_bottom_addr = sba;
     return ret;
 }

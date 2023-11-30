@@ -14,12 +14,11 @@
 #include "machine_types.h"
 #include "literal_table.h"
 #include "utilities.h"
+#include "pl0_lexer.h"
 
 #define MINIMAL_STACK_ALLOC_IN_WORDS 12
 #define MINIMAL_STACK_ALLOC_BYTES (BYTES_PER_WORD*MINIMAL_STACK_ALLOC_IN_WORDS)
 
-// Check the invariant
-extern void literal_table_okay();
 // Initialize the code generator
 extern void gen_code_initialize();
 

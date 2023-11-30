@@ -154,7 +154,7 @@ bool literal_table_iteration_has_next()
 word_type literal_table_iteration_next()
 {
     assert(iteration_next != NULL);
-    float ret = iteration_next->value;
+    word_type ret = iteration_next->value;
     iteration_next = iteration_next->next;
     return ret;
 }
